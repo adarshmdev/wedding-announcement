@@ -96,6 +96,8 @@ Version:        1.0.0
 	Fonts
 ----------------------------*/
 @import url("https://fonts.googleapis.com/css?family=Muli:400,400i,600,700,800&display=swap");
+@import 'swiper/swiper-bundle.min.css';
+
 @font-face {
   font-family: "Futura PT";
   src: url("../fonts/FuturaPT-Demi.woff2") format("woff2"), url("../fonts/FuturaPT-Demi.woff") format("woff");
@@ -3225,7 +3227,7 @@ img {
   font-family: "themify";
   content: "";
   font-size: 20px;
-  color: #fff;
+  color: transparent;
 }
 .wpo-hero-slider .swiper-button-next,
 .static-hero .swiper-button-next,
@@ -3240,7 +3242,7 @@ img {
   font-family: "themify";
   content: "";
   font-size: 20px;
-  color: #fff;
+  color: transparent;
 }
 @media (max-width: 991px) {
   .wpo-hero-slider .swiper-button-prev,

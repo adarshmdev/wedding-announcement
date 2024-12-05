@@ -25,6 +25,8 @@
     <link href="assets/css/jquery.fancybox.css" rel="stylesheet">
     <link href="assets/css/odometer-theme-default.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
+    
+
 
     <style>
         .wishes-section {
@@ -92,7 +94,162 @@
                 width: calc(100vw - 60px);
             }
         }
+
+        .swiper-button-next, 
+    .swiper-button-prev {
+        color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .swiper-button-next:hover, 
+    .swiper-button-prev:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+        color: rgba(255, 255, 255, 1);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .swiper-button-next i, 
+    .swiper-button-prev i {
+        font-size: 35px;
+    }
+
+    .swiper-button-next {
+        right: 20px;
+    }
+
+    .swiper-button-prev {
+        left: 20px;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .swiper-button-next, 
+        .swiper-button-prev {
+            width: 50px;
+            height: 50px;
+        }
+
+        .swiper-button-next i, 
+        .swiper-button-prev i {
+            font-size: 24px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .swiper-button-next, 
+        .swiper-button-prev {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .swiper-button-next i, 
+        .swiper-button-prev i {
+            font-size: 20px;
+        }
+    }
+        
+
+    .sortable-gallery .grid {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.img-holder {
+    position: relative;
+    overflow: hidden;
+}
+
+.img-holder img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+
+
+.img-holder:hover .hover-content {
+    opacity: 1;
+}
+
+.img-holder .hover-content i {
+    color: white;
+    font-size: 24px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+@media (max-width: 992px) {
+    .sortable-gallery .grid {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .sortable-gallery .grid {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+
+.img-holder {
+        position: relative;
+        overflow: hidden;
+    }
+    .hover-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .img-holder:hover .hover-overlay {
+        opacity: 1;
+    }
+    .hover-icons {
+        display: flex;
+        gap: 20px;
+        color: white;
+        font-size: 24px;
+    }
+    .hover-icons i {
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+    .hover-icons i:hover {
+        transform: scale(1.2);
+    }
+
         </style>
+
+        
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/themify-icons/1.0.1/css/themify-icons.min.css" integrity="sha512-1dGLm+osb2qybDdq7FtMY1bczt2RHvxvA8n5q+mSz8C9IvjwzAxEQ08Rz7E0g42ZILt5fhFZljH3+syAIekzUg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMuvd7aKAo8hrykeHbo1l0sN5RA5sqH9wPxu68+" crossorigin="anonymous" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -333,8 +490,12 @@
 
                 <!-- swipper controls -->
                 <div class="swiper-pagination"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="swiper-button-prev">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
             </div>
         </section>
         <!-- end of wpo-hero-slide-section-->
@@ -352,60 +513,15 @@
             </div> <!-- end container -->
         </section>
         <!-- end wpo-wedding-date -->
-        <!-- start couple-section -->
-<section class="couple-section section-padding" id="couple">
+<!-- start invitation-section -->
+<section class="invitation-section section-padding" id="invitation">
     <div class="container">
         <div class="row">
-            <div class="wpo-section-title-s2">
-                <div class="section-title-simg">
-                    <img src="assets/images/section-title2.png" alt="">
-                </div>
-                <h2>Our Love Story</h2>
-                <div class="section-title-img">
-                    <div class="round-ball"></div>
-                </div>
-            </div>
-        </div>
-        <div class="row align-items-center">
-            <div class="col-md-5 text-center">
-                <div class="couple-profile">
-                    <div class="couple-img mb-4">
-                        <img src="assets/images/2.jpg" alt="Bride" class="rounded-circle">
-                    </div>
-                    <h3 class="couple-name">Athira</h3>
-                    <p class="couple-description">The beautiful soul who brings light and love to our journey</p>
-                    <div class="couple-social">
-                        <a href="#" class="social-icon"><i class="ti-facebook"></i></a>
-                        <a href="#" class="social-icon"><i class="ti-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2 text-center">
-                <div class="couple-separator">
-                    <img src="assets/images/heart-icon.png" alt="Love" class="heart-icon">
-                </div>
-            </div>
-            <div class="col-md-5 text-center">
-                <div class="couple-profile">
-                    <div class="couple-img mb-4">
-                        <img src="assets/images/3.jpg" alt="Groom" class="rounded-circle">
-                    </div>
-                    <h3 class="couple-name">Anooplal</h3>
-                    <p class="couple-description">The loving partner who completes our shared dream</p>
-                    <div class="couple-social">
-                        <a href="#" class="social-icon"><i class="ti-facebook"></i></a>
-                        <a href="#" class="social-icon"><i class="ti-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-5">
             <div class="col-12 text-center">
-                <div class="couple-story">
-                    <h3>A Journey of Love and Togetherness</h3>
-                    <p>We are thrilled to announce the marriage of <strong>Anooplal</strong> and <strong>Athira</strong>. 
-                    Our love story is built on mutual respect, shared dreams, and an unbreakable bond that grows stronger each day.</p>
-                    <p>Together, we look forward to creating beautiful memories and embarking on life's greatest adventure.</p>
+                <div class="wedding-invitation">
+                    <h3>With Joy in Our Hearts</h3>
+                    <p>With the blessings of our families, we joyfully invite you to celebrate the union of <strong>Athira</strong> and <strong>Anooplal</strong> as we exchange our wedding vows and begin our lifelong journey together. Your presence will make our special day complete, filling it with love, warmth, and cherished memories.</p>
+                    <p>Join us as we start this beautiful chapter of our lives, surrounded by the love and support of our dearest family and friends.</p>
                 </div>
             </div>
         </div>
@@ -426,113 +542,7 @@
         <!-- end wpo-video-section-->
 
         <!-- start story-section -->
-        <section class="story-section section-padding" id="story">
-            <div class="container">
-                <div class="row">
-                    <div class="wpo-section-title-s2">
-                        <div class="section-title-simg">
-                            <img src="assets/images/section-title2.png" alt="">
-                        </div>
-                        <h2>Our Love Story</h2>
-                        <div class="section-title-img">
-                            <div class="round-ball"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col col-xs-12">
-                        <div class="story-timeline">
-                            <div class="round-shape"></div>
-                            <div class="row">
-                                <div class="col col-lg-6 col-12">
-                                    <div class="story-text right-align-text">
-                                        <h3>First time we meet</h3>
-                                        <span class="date">Nov 12,2021</span>
-                                        <p>I must explain to you how all this mistaken idea of denouing pleasure and praising pain was born and I will give you com acount of system,the actual teach</p>
-                                    </div>
-                                </div>
-                                <div class="col col-lg-6 col-12">
-                                    <div class="img-holder">
-                                        <img src="assets/images/1.jpg" alt class="img img-responsive">
-                                        <div class="story-shape-img">
-                                            <img src="assets/images/shape.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col col-lg-6 col-12">
-                                    <div class="img-holder right-align-text left-site">
-                                        <img src="assets/images/2.jpg" alt class="img img-responsive">
-                                        <div class="story-shape-img">
-                                            <img src="assets/images/shape.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col col-lg-6 col-12 text-holder">
-                                    <span class="heart">
-                                        <i class="fi flaticon-heart"></i>
-                                    </span>
-                                    <div class="story-text">
-                                        <h3>First Date</h3>
-                                        <span class="date">Dec 25,2021</span>
-                                        <p>I must explain to you how all this mistaken idea of denouing pleasure and praising pain was born and I will give you com acount of system,the actual teach</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col col-lg-6 col-12 text-holder right-heart">
-                                    <span class="heart">
-                                        <i class="fi flaticon-calendar"></i>
-                                    </span>
-                                    <div class="story-text right-align-text">
-                                        <h3>Marriage Proposal</h3>
-                                        <span class="date">Nov 12,2021</span>
-                                        <p>I must explain to you how all this mistaken idea of denouing pleasure and praising pain was born and I will give you com acount of system,the actual teach</p>
-                                    </div>
-                                </div>
-                                <div class="col col-lg-6 col-12">
-                                    <div class="img-holder right-align-text">
-                                        <img src="assets/images/3.jpg" alt class="img img-responsive">
-                                        <div class="story-shape-img">
-                                            <img src="assets/images/shape.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col col-lg-6 col-12">
-                                    <div class="img-holder video-holder left-site">
-                                        <img src="assets/images/4.jpg" alt class="img img-responsive">
-                                        <div class="story-shape-img">
-                                            <img src="assets/images/shape.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col col-lg-6 col-12 text-holder">
-                                    <span class="heart">
-                                        <i class="fi flaticon-dove"></i>
-                                    </span>
-                                    <div class="story-text">
-                                        <h3>Our Engagement</h3>
-                                        <span class="date">Dec 25,2021</span>
-                                        <p>I must explain to you how all this mistaken idea of denouing pleasure and praising pain was born and I will give you com acount of system,the actual teach</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col offset-lg-6 col-lg-6 col-12 text-holder">
-                                    <span class="heart">
-                                        <i class="fi flaticon-wedding-rings"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- end row -->
-            </div> <!-- end container -->
-        </section>
+       
         <!-- end story-section -->
 
         <!-- start wpo-portfolio-section -->
@@ -550,73 +560,91 @@
                     </div>
                 </div>
                 <div class="sortable-gallery">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="portfolio-grids gallery-container clearfix">
-                                <div class="grid">
-                                    <div class="img-holder">
-                                        <a href="assets/images/AKH03601.JPG" class="fancybox" data-fancybox-group="gall-1">
-                                            <img src="assets/images/AKH03601.JPG" alt class="img img-responsive">
-                                            <div class="hover-content">
-                                                <i class="ti-plus"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="grid">
-                                    <div class="img-holder">
-                                        <a href="assets/images/AKH04736.JPG" class="fancybox" data-fancybox-group="gall-1">
-                                            <img src="assets/images/AKH04736.JPG" alt class="img img-responsive">
-                                            <div class="hover-content">
-                                                <i class="ti-plus"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="grid">
-                                    <div class="img-holder">
-                                        <a href="assets/images/AKH04680.JPG" class="fancybox" data-fancybox-group="gall-1">
-                                            <img src="assets/images/AKH04680.JPG" alt class="img img-responsive">
-                                            <div class="hover-content">
-                                                <i class="ti-plus"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="grid">
-                                    <div class="img-holder">
-                                        <a href="assets/images/AKH04490.JPG" class="fancybox" data-fancybox-group="gall-1">
-                                            <img src="assets/images/AKH04490.JPG" alt class="img img-responsive">
-                                            <div class="hover-content">
-                                                <i class="ti-plus"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="grid">
-                                    <div class="img-holder">
-                                        <a href="assets/images/AKH03610.JPG" class="fancybox" data-fancybox-group="gall-1">
-                                            <img src="assets/images/AKH03610.JPG" alt class="img img-responsive">
-                                            <div class="hover-content">
-                                                <i class="ti-plus"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="grid">
-                                    <div class="img-holder">
-                                        <a href="assets/images/AKH03601.JPG" class="fancybox" data-fancybox-group="gall-1">
-                                            <img src="assets/images/AKH03601.JPG" alt class="img img-responsive">
-                                            <div class="hover-content">
-                                                <i class="ti-plus"></i>
-                                            </div>
-                                        </a>
-                                    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="portfolio-grids gallery-container clearfix">
+                <div class="grid">
+                    <div class="img-holder">
+                        <a href="assets/images/AKH03601.JPG" class="fancybox" data-fancybox-group="gall-1">
+                            <img src="assets/images/AKH03601.JPG" alt="" class="img-fluid w-100">
+                            <div class="hover-overlay">
+                                <div class="hover-icons">
+                                    <i class="fas fa-expand"></i>
+                                    <i class="fas fa-download download-icon" data-src="assets/images/AKH03601.JPG"></i>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
+                <div class="grid">
+                    <div class="img-holder">
+                        <a href="assets/images/AKH04736.JPG" class="fancybox" data-fancybox-group="gall-1">
+                            <img src="assets/images/AKH04736.JPG" alt="" class="img-fluid w-100">
+                            <div class="hover-overlay">
+                                <div class="hover-icons">
+                                    <i class="fas fa-expand"></i>
+                                    <i class="fas fa-download download-icon" data-src="assets/images/AKH04736.JPG"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="img-holder">
+                        <a href="assets/images/AKH04680.JPG" class="fancybox" data-fancybox-group="gall-1">
+                            <img src="assets/images/AKH04680.JPG" alt="" class="img-fluid w-100">
+                            <div class="hover-overlay">
+                                <div class="hover-icons">
+                                    <i class="fas fa-expand"></i>
+                                    <i class="fas fa-download download-icon" data-src="assets/images/AKH04680.JPG"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="img-holder">
+                        <a href="assets/images/AKH04490.JPG" class="fancybox" data-fancybox-group="gall-1">
+                            <img src="assets/images/AKH04490.JPG" alt="" class="img-fluid w-100">
+                            <div class="hover-overlay">
+                                <div class="hover-icons">
+                                    <i class="fas fa-expand"></i>
+                                    <i class="fas fa-download download-icon" data-src="assets/images/AKH04490.JPG"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="img-holder">
+                        <a href="assets/images/AKH03610.JPG" class="fancybox" data-fancybox-group="gall-1">
+                            <img src="assets/images/AKH03610.JPG" alt="" class="img-fluid w-100">
+                            <div class="hover-overlay">
+                                <div class="hover-icons">
+                                    <i class="fas fa-expand"></i>
+                                    <i class="fas fa-download download-icon" data-src="assets/images/AKH03610.JPG"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="img-holder">
+                        <a href="assets/images/AKH03601.JPG" class="fancybox" data-fancybox-group="gall-1">
+                            <img src="assets/images/AKH03601.JPG" alt="" class="img-fluid w-100">
+                            <div class="hover-overlay">
+                                <div class="hover-icons">
+                                    <i class="fas fa-expand"></i>
+                                    <i class="fas fa-download download-icon" data-src="assets/images/AKH03601.JPG"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
             </div> <!-- end container -->
         </section>
@@ -729,16 +757,16 @@
                         <div class="col col-lg-4 col-md-6 col-12">
                             <div class="wpo-event-item">
                                 <div class="wpo-event-text">
-                                    <h2>The Wedding Eve</h2>
+                                    <h2>Wedding Eve</h2>
                                     <ul>
                                         <li>Saturday, 7 Dec, 2024<br>4:00 PM – 9:30 PM</li>
                                         <li>Bride's Home, Kannur</li>
                                         <li>Phone: +12345678910</li>
                                         <li>
-                                            <!-- Open the modal to show location -->
-                                            <a class="popup-gmaps" data-bs-toggle="modal" data-bs-target="#mapModal1" href="javascript:void(0);">See Location</a>
+                                            <a href="https://maps.app.goo.gl/8L1wGxBNTT5bCxig6" target="_blank">See Location</a>
                                         </li>
                                     </ul>
+                                    <div class="weather-info" id="weather-eve"></div>
                                 </div>
                                 <div class="event-shape-1">
                                     <img src="assets/images/event-shape-1.png" alt="Shape">
@@ -748,8 +776,8 @@
                                 </div>
                             </div>
                         </div>
-                
-                        <!-- Wedding Day -->
+                        
+                        <!-- The Ceremony -->
                         <div class="col col-lg-4 col-md-6 col-12">
                             <div class="wpo-event-item">
                                 <div class="wpo-event-text">
@@ -759,10 +787,10 @@
                                         <li>Bride's Home, Kannur, Irinave</li>
                                         <li>Phone: +12345678910</li>
                                         <li>
-                                            <!-- Open the modal to show location -->
-                                            <a class="popup-gmaps" data-bs-toggle="modal" data-bs-target="#mapModal2" href="javascript:void(0);">See Location</a>
+                                            <a href="https://maps.app.goo.gl/8L1wGxBNTT5bCxig6" target="_blank">See Location</a>
                                         </li>
                                     </ul>
+                                    <div class="weather-info" id="weather-ceremony"></div>
                                 </div>
                                 <div class="event-shape-1">
                                     <img src="assets/images/event-shape-1.png" alt="Shape">
@@ -772,7 +800,7 @@
                                 </div>
                             </div>
                         </div>
-                
+                        
                         <!-- Wedding Party -->
                         <div class="col col-lg-4 col-md-6 col-12">
                             <div class="wpo-event-item">
@@ -783,10 +811,10 @@
                                         <li>Auditorium in Dharmashala, Kalco Hall</li>
                                         <li>Phone: +12345678910</li>
                                         <li>
-                                            <!-- Open the modal to show location -->
-                                            <a class="popup-gmaps" data-bs-toggle="modal" data-bs-target="#mapModal3" href="javascript:void(0);">See Location</a>
+                                            <a href="https://www.google.com/maps/place/Kalco+Hall/@11.9870896,75.3770136,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba43f3c96a77e91:0x92a156f87582aef5!8m2!3d11.9870844!4d75.3795885!16s%2Fg%2F11fctdgcyz?entry=ttu&g_ep=EgoyMDI0MTIwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank">See Location</a>
                                         </li>
                                     </ul>
+                                    <div class="weather-info" id="weather-party"></div>
                                 </div>
                                 <div class="event-shape-1">
                                     <img src="assets/images/event-shape-1.png" alt="Shape">
@@ -906,7 +934,7 @@
                                 <div class="wpo-gift-content">
                                     <h2>Send a Wedding Gift</h2>
                                     <p>Support the couple's new journey with a monetary gift</p>
-                                    <a href="https://pay.google.com" class="theme-btn">Gift Now via Google Pay</a>
+                                    <a href="upi://pay?pa=adarshktpn40@oksbi&pn=adarsh+pp&url=https://anoopwedsathira.online" target="_blank" class="theme-btn">Gift Now via Google Pay</a>
                                 </div>
                             </div>
                         </div>
@@ -1049,6 +1077,68 @@
     window.addEventListener('resize', initializeSliding);
 });
         </script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const downloadIcons = document.querySelectorAll('.download-icon');
+        
+        downloadIcons.forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent opening the image in lightbox
+                
+                const imageSrc = this.getAttribute('data-src');
+                const fileName = imageSrc.split('/').pop();
+                
+                // Create a temporary anchor element to trigger download
+                const downloadLink = document.createElement('a');
+                downloadLink.href = imageSrc;
+                downloadLink.download = fileName;
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            });
+        });
+    });
+    </script>
+
+<script>
+    const API_KEY = 'd44ccbeb4119f45bfad10b18ff7ca889'; // Replace with your weather API key
+
+    // Event locations and dates
+    const events = [
+        { id: 'weather-eve', date: '2024-12-07', location: 'Kannur' },
+        { id: 'weather-ceremony', date: '2024-12-08', location: 'Kannur, Irinave' },
+        { id: 'weather-party', date: '2024-12-08', location: 'Dharmashala, Kalco Hall' }
+    ];
+
+    // Fetch weather data for each event
+    async function fetchWeather() {
+        for (const event of events) {
+            try {
+                const response = await fetch(
+                    `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(event.location)}&appid=${API_KEY}&units=metric`
+                );
+                const data = await response.json();
+
+                // Find forecast for the specific date
+                const forecast = data.list.find(item => item.dt_txt.startsWith(event.date));
+                const weatherHtml = forecast
+                    ? `<p><strong>Weather:</strong> ${forecast.weather[0].description}, ${forecast.main.temp}°C</p>`
+                    : '<p>Weather data not available</p>';
+
+                // Update the corresponding event's weather placeholder
+                document.getElementById(event.id).innerHTML = weatherHtml;
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+                document.getElementById(event.id).innerHTML = '<p>Failed to load weather info</p>';
+            }
+        }
+    }
+
+    // Run fetchWeather on page load
+    document.addEventListener('DOMContentLoaded', fetchWeather);
+</script>
 
 </body>
 
